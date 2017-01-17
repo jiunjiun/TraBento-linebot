@@ -63,5 +63,15 @@ module Line
         $redis.set "r#{user_id}", sourceable.to_json
       end
     end
+
+    def sourceable_idle!
+      @sourceable[:status] = Line::ScriptsBase::SourceableStatus::IDLE
+      save_sourceable!
+    end
+
+    def sourceable_search!
+      @sourceable[:status] = Line::ScriptsBase::SourceableStatus::SEARCH
+      save_sourceable!
+    end
   end
 end

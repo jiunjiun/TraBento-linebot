@@ -15,6 +15,8 @@ module Line::Scripts
           message = event.message['text']
 
           if sourceable[:status] == Line::ScriptsBase::SourceableStatus::SEARCH
+            sourceable_idle!
+
             opts = {
               date: message
             }
@@ -37,8 +39,7 @@ module Line::Scripts
               },
             ]
           elsif message =~ /^(search|Search|查詢供餐車次及區間)/
-            sourceable[:status] = Line::ScriptsBase::SourceableStatus::SEARCH
-            save_sourceable!
+            sourceable_search!
 
             reply_messages = [
               {
