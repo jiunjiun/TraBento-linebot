@@ -31,19 +31,27 @@ module Line
         result = $redis.get "u#{user_id}"
       when 'group'
         group_id = source['groupId']
-        result = $redis.get "g#{user_id}"
+        result = $redis.get "g#{group_id}"
       when 'room'
         room_id = source['roomId']
-        result = $redis.get "r#{user_id}"
+        result = $redis.get "r#{room_id}"
       end
 
-      @sourceable = JSON.parse(result, symbolize_names: true)
+      if result.present?
+        @sourceable = JSON.parse(result, symbolize_names: true)
+      else
+        @sourceable = { status: Line::ScriptsBase::SourceableStatus::IDLE }
+        save_sourceable!
+      end
     rescue
-      {}
+      @sourceable = { status: Line::ScriptsBase::SourceableStatus::IDLE }
+      save_sourceable!
     end
 
     def save_sourceable!
-      case event['source']['type']
+      source = event['source']
+
+      case source['type']
       when 'user'
         user_id = source['userId']
         $redis.set "u#{user_id}", sourceable.to_json

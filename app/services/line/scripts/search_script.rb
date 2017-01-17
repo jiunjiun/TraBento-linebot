@@ -11,7 +11,7 @@ module Line::Scripts
       when Line::Bot::Event::Message
         message_id = event.message['id']
         case event.type
-        when Line::Bot::Event::MessageType::text
+        when Line::Bot::Event::MessageType::Text
           message = event.message['text']
 
           if sourceable[:status] == Line::ScriptsBase::SourceableStatus::SEARCH
