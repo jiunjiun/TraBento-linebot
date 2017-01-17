@@ -51,3 +51,23 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# -
+
+# debug
+gem "pry"
+gem "pry-rails"
+gem "awesome_print", require: false
+
+group :development, :test do # 也包含 test 是為了讓寫 test case 時也可以 debug
+  # gem "pry-plus"
+  gem "hirb", require: false
+  gem "hirb-unicode", require: false
+
+  # RSpec
+  gem "rspec-rails"
+  gem "factory_girl_rails"
+end
+
+# adapter
+gem 'line-bot-api'
