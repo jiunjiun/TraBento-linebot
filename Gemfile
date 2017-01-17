@@ -71,3 +71,8 @@ end
 
 # adapter
 gem 'line-bot-api'
+
+gem 'redis'
+
+# Env variable
+gem "figaro"
