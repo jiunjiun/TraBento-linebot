@@ -76,3 +76,5 @@ gem 'redis'
 
 # Env variable
 gem "figaro"
+
+gem "rest-client"
