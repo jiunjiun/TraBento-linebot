@@ -9,7 +9,6 @@ module Line::Scripts
       # --- parse info
       case event
       when Line::Bot::Event::Message
-        message_id = event.message['id']
         case event.type
         when Line::Bot::Event::MessageType::Text
           message = event.message['text']
@@ -24,9 +23,11 @@ module Line::Scripts
             begin
               msg = ''
               result = JSON.parse(TraBento.search(opts).body, symbolize_names: true)
-              result.each do |info|
-                info = info.to_a
-                msg += "#{info.first}: #{info.last}"
+              result[:result].each do |infos|
+                infos.to_a.each do |info|
+                  msg += "#{info.first}: #{info.last}\n"
+                end
+                msg += "\n"
               end
             rescue => e
               msg = 'Error!'
