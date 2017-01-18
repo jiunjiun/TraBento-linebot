@@ -97,15 +97,15 @@ module Line::Scripts
 
               msg = ''
               msg += "你的訂單資料為\n"
-              msg += "身分證：#{@sourceable[:order][:params][:id]}\n"
-              msg += "預約號：#{@sourceable[:order][:params][:resNo]}\n"
-              msg += "排骨便當數量：#{@sourceable[:order][:params][:ribsBox]}\n"
-              msg += "素食便當數量：#{@sourceable[:order][:params][:vegetarianBox]}\n"
-              msg += "統一編號：#{@sourceable[:order][:params][:vat]}\n"
+              msg += "身分證：#{sourceable[:order][:params][:id]}\n"
+              msg += "預約號：#{sourceable[:order][:params][:resNo]}\n"
+              msg += "排骨便當數量：#{sourceable[:order][:params][:ribsBox]}\n"
+              msg += "素食便當數量：#{sourceable[:order][:params][:vegetarianBox]}\n"
+              msg += "統一編號：#{sourceable[:order][:params][:vat]}\n"
               msg += "\n"
               msg += "確認無誤後，填入數字 1或2\n"
               msg += "1: 送出訂單\n"
-              msg += "2: 取消訂單\n"
+              msg += "2: 取消訂單"
 
               reply_messages = [
                 {
@@ -117,8 +117,8 @@ module Line::Scripts
               sourceable_idle!
 
               if message == '1'
-                cookies = @sourceable[:order][:cookies]
-                params = @sourceable[:order][:params]
+                cookies = sourceable[:order][:cookies]
+                params  = sourceable[:order][:params]
 
                 response = TraBento.order cookies, params
                 begin
