@@ -14,10 +14,15 @@ module Line::Scripts
 
           if message =~ /^(help|HELP|Help)/
             role  = ''
-            role += "訂便當\t\t- 開始訂便當\n"
-            role += "取消便當\t\t - 取消便當訂購\n"
-            role += "查詢便當記錄\t - 查詢便當訂購記錄\n"
-            role += "查詢便當供餐車\t - 查詢供餐車次及區間\n"
+            role += " -- 提供下面指令 -- \n"
+            role += "訂便當 - 開始訂便當\n"
+            role += "取消便當 - 取消便當訂購\n"
+            role += "查詢便當記錄 - 查詢便當訂購記錄\n"
+            role += "查詢便當供餐車 - 查詢供餐車次及區間\n"
+            role += "\n"
+            role += "Created by Github: jiunjiun\n"
+            role += "感謝：\n"
+            role += "Howard Wu 提供 API - http://bentobox.goodideas-campus.com/"
 
             reply_messages = [
               {
