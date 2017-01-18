@@ -2,13 +2,13 @@ module Line::Scripts
   module OrderScript
 
     module Step
-      ID_NUMBER      = 1
-      RESERVATION    = 2
-      RIBS_BOX       = 3
-      VEGETARIAN_BOX = 4
-      VAT_NUMBER     = 5
-      CAPTCHA        = 6
-      CONFIRM        = 7
+      ID_NUMBER          = 1
+      RESERVATION_NUMBER = 2
+      RIBS_BOX           = 3
+      VEGETARIAN_BOX     = 4
+      VAT_NUMBER         = 5
+      CAPTCHA            = 6
+      CONFIRM            = 7
     end
 
     def assign
@@ -27,7 +27,7 @@ module Line::Scripts
             case sourceable[:order][:step]
             when Step::ID_NUMBER
               @sourceable[:order][:params][:id] = message
-              @sourceable[:order][:step] = Line::Scripts::OrderScript::Step::RESERVATION
+              @sourceable[:order][:step] = Line::Scripts::OrderScript::Step::RESERVATION_NUMBER
               save_sourceable!
 
               reply_messages = [
@@ -36,7 +36,7 @@ module Line::Scripts
                   text: "請輸入訂位預約號:"
                 },
               ]
-            when Step::RESERVATION
+            when Step::RESERVATION_NUMBER
               @sourceable[:order][:params][:resNo] = message
               @sourceable[:order][:step] = Line::Scripts::OrderScript::Step::RIBS_BOX
               save_sourceable!
