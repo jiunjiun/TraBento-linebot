@@ -3,6 +3,7 @@ module Line
     prepend Line::Scripts::HelpScript
     prepend Line::Scripts::SearchScript
     prepend Line::Scripts::OrderScript
+    prepend Line::Scripts::CancelScript
 
     attr_reader :event
     attr_reader :sourceable
@@ -11,6 +12,7 @@ module Line
       IDLE   = 0
       SEARCH = 1
       ORDER  = 2
+      CANCEL = 3
     end
 
     def self.assign event
@@ -90,6 +92,18 @@ module Line
           ribsBox: '',
           vegetarianBox: '',
           vat: '',
+        }
+      }
+      save_sourceable!
+    end
+
+    def sourceable_cancel!
+      @sourceable[:status] = Line::ScriptsBase::SourceableStatus::CANCEL
+      @sourceable[:cancel] = {
+        step: Line::Scripts::OrderScript::Step::ID_NUMBER,
+        params: {
+          id: '',
+          resNo: '',
         }
       }
       save_sourceable!
