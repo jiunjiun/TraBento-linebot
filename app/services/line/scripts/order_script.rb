@@ -103,20 +103,34 @@ module Line::Scripts
               msg += "素食便當數量：#{sourceable[:order][:params][:vegetarianBox]}\n"
               msg += "統一編號：#{sourceable[:order][:params][:vat]}\n"
               msg += "\n"
-              msg += "確認無誤後，填入數字 1或2\n"
-              msg += "1: 送出訂單\n"
-              msg += "2: 取消訂單"
+              msg += "確認無誤後，填入數字 yes或no\n"
+              msg += "yes: 送出訂單\n"
+              msg += "no: 取消訂單"
 
-              reply_messages = [
-                {
-                  type: 'text',
-                  text: msg
-                },
-              ]
+              reply_messages = {
+                type: 'template',
+                altText: msg,
+                template: {
+                  type: 'confirm',
+                  text: msg,
+                  actions: [
+                    {
+                      type: 'message',
+                      label: 'Yes',
+                      text: 'yes',
+                    },
+                    {
+                      type: 'message',
+                      label: 'No',
+                      text: 'no',
+                    },
+                  ],
+                }
+              }
             when Step::CONFIRM
               sourceable_idle!
 
-              if message == '1'
+              if message == 'yes'
                 cookies = sourceable[:order][:cookies]
                 params  = sourceable[:order][:params]
 
