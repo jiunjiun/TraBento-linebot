@@ -14,7 +14,10 @@ module Line::Scripts
 
           if message =~ /^(help|HELP|Help)/
             role  = ''
-            role += "help - help\n"
+            role += "訂便當\t\t- 開始訂便當\n"
+            role += "取消便當\t\t - 取消便當訂購\n"
+            role += "查詢便當記錄\t - 查詢便當訂購記錄\n"
+            role += "查詢便當供餐車\t - 查詢供餐車次及區間\n"
 
             reply_messages = [
               {
