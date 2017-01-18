@@ -39,13 +39,13 @@ module Line::Scripts
                 text: msg
               },
             ]
-          elsif message =~ /^(search|Search|查詢供餐車次及區間)/
+          elsif message =~ /^(search|Search|查詢供餐車次及區間)$/
             sourceable_search!
 
             reply_messages = [
               {
                 type: 'text',
-                text: '請輸入查詢日期，範例：2017/01/17'
+                text: '請輸入 查詢日期 , 範例：2017/01/17'
               },
             ]
           end

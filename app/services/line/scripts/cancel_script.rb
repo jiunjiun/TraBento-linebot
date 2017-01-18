@@ -28,7 +28,7 @@ module Line::Scripts
               reply_messages = [
                 {
                   type: 'text',
-                  text: "請輸入訂位預約號:"
+                  text: "請輸入 預約號:"
                 },
               ]
             when Step::RESERVATION_NUMBER
@@ -51,7 +51,7 @@ module Line::Scripts
                 },
               ]
             end
-          elsif message =~ /^(cancel|Cancel|取消便當訂購)/
+          elsif message =~ /^(cancel|Cancel|取消便當訂購)$/
             sourceable_cancel!
 
             reply_messages = [
@@ -61,7 +61,7 @@ module Line::Scripts
               },
               {
                 type: 'text',
-                text: "請輸入身份證:"
+                text: "請輸入 身份證:"
               }
             ]
           end
