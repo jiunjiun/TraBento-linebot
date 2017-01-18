@@ -51,7 +51,7 @@ module Line::Scripts
                 },
               ]
             end
-          elsif message =~ /^(cancel|Cancel|取消便當訂購)$/
+          elsif message =~ /^(cancel|Cancel|取消便當)$/
             sourceable_cancel!
 
             reply_messages = [
