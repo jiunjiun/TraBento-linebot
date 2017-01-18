@@ -27,7 +27,7 @@ module Line::Scripts
             case sourceable[:order][:step]
             when Step::ID_NUMBER
               @sourceable[:order][:params][:id] = message
-              @sourceable[:order][:step] = Line::Scripts::OrderScript::Step::RESERVATION_NUMBER
+              @sourceable[:order][:step] = Step::RESERVATION_NUMBER
               save_sourceable!
 
               reply_messages = [
@@ -38,7 +38,7 @@ module Line::Scripts
               ]
             when Step::RESERVATION_NUMBER
               @sourceable[:order][:params][:resNo] = message
-              @sourceable[:order][:step] = Line::Scripts::OrderScript::Step::RIBS_BOX
+              @sourceable[:order][:step] = Step::RIBS_BOX
               save_sourceable!
 
               reply_messages = [
@@ -49,7 +49,7 @@ module Line::Scripts
               ]
             when Step::RIBS_BOX
               @sourceable[:order][:params][:ribsBox] = message.to_i
-              @sourceable[:order][:step] = Line::Scripts::OrderScript::Step::VEGETARIAN_BOX
+              @sourceable[:order][:step] = Step::VEGETARIAN_BOX
               save_sourceable!
 
               reply_messages = [
@@ -60,7 +60,7 @@ module Line::Scripts
               ]
             when Step::VEGETARIAN_BOX
               @sourceable[:order][:params][:vegetarianBox] = message.to_i
-              @sourceable[:order][:step] = Line::Scripts::OrderScript::Step::VAT_NUMBER
+              @sourceable[:order][:step] = Step::VAT_NUMBER
               save_sourceable!
 
               reply_messages = [
@@ -72,7 +72,7 @@ module Line::Scripts
             when Step::VAT_NUMBER
               @sourceable[:order][:params][:vat] = (message == '無' ? '' : message.to_i)
 
-              @sourceable[:order][:step] = Line::Scripts::OrderScript::Step::CAPTCHA
+              @sourceable[:order][:step] = Step::CAPTCHA
 
               response = TraBento.captcha
               @sourceable[:order][:captcha_binary] = Base64.encode64(response.body)
@@ -92,7 +92,7 @@ module Line::Scripts
               ]
             when Step::CAPTCHA
               @sourceable[:order][:params][:captcha] = message
-              @sourceable[:order][:step] = Line::Scripts::OrderScript::Step::CONFIRM
+              @sourceable[:order][:step] = Step::CONFIRM
               save_sourceable!
 
               msg = ''
