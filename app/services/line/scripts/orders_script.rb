@@ -59,7 +59,7 @@ module Line::Scripts
                 },
               ]
             end
-          elsif message =~ /^(orders|Orders|查詢便當訂購記錄)$/
+          elsif message =~ /^(orders|Orders|查詢便當記錄)$/
             sourceable_orders!
 
             reply_messages = [

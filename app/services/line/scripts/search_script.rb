@@ -39,7 +39,7 @@ module Line::Scripts
                 text: msg
               },
             ]
-          elsif message =~ /^(search|Search|查詢便當)$/
+          elsif message =~ /^(search|Search|查詢便當供餐車)$/
             sourceable_search!
 
             reply_messages = [
